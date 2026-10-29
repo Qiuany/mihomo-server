@@ -1,0 +1,16 @@
+# Source in Bash or Zsh. Defining this function does not enable proxy variables.
+proxy() {
+    case "${1:-status}" in
+        on)
+            export http_proxy=http://127.0.0.1:@PORT@ https_proxy=http://127.0.0.1:@PORT@
+            export HTTP_PROXY="$http_proxy" HTTPS_PROXY="$https_proxy"
+            export all_proxy=socks5h://127.0.0.1:@PORT@ ALL_PROXY=socks5h://127.0.0.1:@PORT@
+            case ",${no_proxy:-}," in *,127.0.0.1,*) ;; *) export no_proxy="${no_proxy:+$no_proxy,}localhost,127.0.0.1,::1" ;; esac
+            case ",${NO_PROXY:-}," in *,127.0.0.1,*) ;; *) export NO_PROXY="${NO_PROXY:+$NO_PROXY,}localhost,127.0.0.1,::1" ;; esac
+            echo 'Proxy enabled for this shell.' ;;
+        off)
+            unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY all_proxy ALL_PROXY
+            echo 'Proxy disabled for this shell.' ;;
+        *) @COMMAND@ "$@" ;;
+    esac
+}

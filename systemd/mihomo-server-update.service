@@ -1,0 +1,11 @@
+[Unit]
+Description=Validate and update Mihomo subscription
+[Service]
+Type=oneshot
+ExecStart=@COMMAND@ update
+TimeoutStartSec=480
+Restart=on-failure
+RestartSec=900
+UMask=0077
+NoNewPrivileges=true
+UnsetEnvironment=http_proxy https_proxy HTTP_PROXY HTTPS_PROXY all_proxy ALL_PROXY

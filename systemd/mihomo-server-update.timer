@@ -1,0 +1,9 @@
+[Unit]
+Description=Refresh Mihomo subscription every six hours
+[Timer]
+OnCalendar=*-*-* 00,06,12,18:00:00
+RandomizedDelaySec=300
+Persistent=true
+Unit=mihomo-server-update.service
+[Install]
+WantedBy=timers.target

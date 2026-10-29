@@ -1,0 +1,8 @@
+{
+  "mihomo": "/absolute/path/to/mihomo",
+  "subscription_url": "",
+  "download_timeout": 40,
+  "download_via_proxy": false,
+  "staging_ports": [27890, 29090],
+  "services": ["openai", "wandb"]
+}
